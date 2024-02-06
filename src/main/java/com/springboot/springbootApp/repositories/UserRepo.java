@@ -1,5 +1,9 @@
 package com.springboot.springbootApp.repositories;
 
-public class UserRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.springboot.springbootApp.entities.User;
+
+public interface UserRepo extends JpaRepository<User, Integer> {
 
 }
