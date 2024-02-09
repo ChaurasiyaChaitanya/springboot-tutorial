@@ -19,6 +19,8 @@ import com.springboot.springbootApp.payloads.ApiResponse;
 import com.springboot.springbootApp.payloads.UserDto;
 import com.springboot.springbootApp.services.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -37,13 +39,13 @@ public class UserController {
 	}
 	
 	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
 		UserDto createdUser = this.userService.createUser(userDto);
 		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{userId}")
-	public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto, @PathVariable("userId") Integer userId) {
+	public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto, @PathVariable("userId") Integer userId) {
 		UserDto updatedUser = this.userService.updateUser(userDto, userId);
 		return ResponseEntity.ok(updatedUser);
 	}
