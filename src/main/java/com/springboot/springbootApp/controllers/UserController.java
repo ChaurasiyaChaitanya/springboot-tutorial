@@ -28,6 +28,12 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+	@PostMapping("/")
+	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
+		UserDto createdUser = this.userService.createUser(userDto);
+		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+	}
+	
 	@GetMapping("/")
 	public ResponseEntity<List<UserDto>> getAllUsers() {
 		return ResponseEntity.ok(this.userService.getAllUsers());
@@ -36,12 +42,6 @@ public class UserController {
 	@GetMapping("/{userId}")
 	public ResponseEntity<UserDto> getUser(@PathVariable("userId") Integer userId) {
 		return ResponseEntity.ok(this.userService.getUserById(userId));
-	}
-	
-	@PostMapping("/")
-	public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-		UserDto createdUser = this.userService.createUser(userDto);
-		return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{userId}")
@@ -53,8 +53,7 @@ public class UserController {
 	@DeleteMapping("/{userId}")
 	public ResponseEntity<ApiResponse> deleteUser(@PathVariable("userId") Integer userId) {
 		this.userService.deleteUser(userId);
-		return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully", true), HttpStatus.OK);
+		return new ResponseEntity<ApiResponse>(new ApiResponse("User Deleted Successfully.", true), HttpStatus.OK);
 	}
-	
 
 }

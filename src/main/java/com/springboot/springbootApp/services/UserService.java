@@ -7,8 +7,12 @@ import com.springboot.springbootApp.payloads.UserDto;
 public interface UserService {
 	
 	UserDto createUser(UserDto userDto);
-	UserDto getUserById(Integer userId);
+	
 	List<UserDto> getAllUsers();
+	
+	UserDto getUserById(Integer userId);
+	
 	UserDto updateUser(UserDto userDto, Integer userId);
+	
 	void deleteUser(Integer userId);
 }
