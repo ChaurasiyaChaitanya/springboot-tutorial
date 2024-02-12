@@ -2,12 +2,13 @@ package com.springboot.springbootApp.services;
 
 import java.util.List;
 import com.springboot.springbootApp.payloads.PostDto;
+import com.springboot.springbootApp.payloads.PostResponse;
 
 public interface PostService {
 	
 	PostDto createPost(PostDto postDto, Integer userId, Integer categoryId);
 	
-	List<PostDto> getAllPosts();
+	PostResponse getAllPosts(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 	
 	PostDto getPostById(Integer postId);
 	
@@ -18,5 +19,6 @@ public interface PostService {
 	List<PostDto> getPostsByCategory(Integer categoryId);
 	
 	List<PostDto> getPostsByUser(Integer userId);
-
+	
+	List<PostDto> searchPosts(String keyword);
 }
